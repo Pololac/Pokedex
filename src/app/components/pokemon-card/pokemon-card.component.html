@@ -1,1 +1,14 @@
-<p>pokemon-card works!</p>
+<div class="max-w-sm rounded overflow-hidden shadow-lg border border-emerald-500 my-2">
+    <div class="flex justify-between m-2">
+      <div class="font-semibold">{{ pokemon.name }}</div>
+      <div class="flex gap-2 justify-center items-center">
+        <span *ngIf="pokemon.stats" class="font-semibold">{{ pokemon.stats.hp }} PV</span>
+        <ng-container *ngIf="pokemon.types">
+          <span class="flex gap-0.5">
+            <img *ngFor="let type of pokemon.types" class="w-[16px] h-[16px]" [src]="type.image">
+          </span>
+        </ng-container>
+      </div>
+    </div>
+    <img class="w-full max-w-[250px]" [src]="pokemon.sprite" >
+  </div>

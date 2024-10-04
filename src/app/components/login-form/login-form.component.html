@@ -21,6 +21,12 @@
             formControlName="password"  
             [class.border-red-500]="this.form.get('password').invalid && (this.form.get('password').dirty || this.form.get('password').touched)">
       </div>
+
+      <!-- Affichage du message d'erreur (penser à importer le *ngIf dans le fichier TS) -->
+      <div *ngIf="errMsg" class="px-4 py-2 border-2 border-red-500 text-sm text-red-500 font-bold mb-4">
+        {{ errMsg }}
+      </div>
+
       <div class="flex items-center justify-center">
         <button class="bg-emerald-500 hover:enabled:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50" type="submit"
         [disabled]="this.form.invalid">
