@@ -1,7 +1,5 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 export interface LoginFormContent {
@@ -17,16 +15,12 @@ export interface LoginFormContent {
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent implements OnInit {
-  private readonly authService = inject(AuthService) // inject() = f° d'Angular pr injecter des dépendances
-  private readonly routeur = inject(Router) // inject° du routeur pour redirection
-
-  @Input({required: false})  errMsg?: string    
+    @Input({required: false})  errMsg?: string    
   // @Input({required: false}) errMsg: string | undefined
   
   @Output() formSubmitted: EventEmitter<LoginFormContent> = new EventEmitter<LoginFormContent>()
   
   form: FormGroup
-
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -45,16 +39,7 @@ export class LoginFormComponent implements OnInit {
   async onSubmitForm(): Promise<void> {
     if(this.form.valid){
       const { username, password } =  this.form.value   // Destructuration
-      try {
-        await this.authService.login(username,password)
-
-        // redirection vers la page d'accueil
-        this.routeur.navigateByUrl('/')
-      }
-      catch (e: unknown) {
-        // this.errMsg = e as string      méthode rapide mais pas forcément sécure mais okay
-        this.errMsg = typeof e === 'string' ? e : 'Une erreur est survenue'
-      }
+      this.formSubmitted.emit({username, password })
     }
   }
 }

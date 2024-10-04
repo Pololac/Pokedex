@@ -8,7 +8,8 @@ import { Pokemon, PokemonHttp } from '../../entities/pokemon.entity';
 })
 export class PokemonService {
   private readonly http = inject(HttpClient)
-  
+
+
   async list(): Promise<Pokemon[]> {
     const req = this.http.get<PokemonHttp[]>('https://tyradex.vercel.app/api/v1/pokemon')
     // Transforme req ("observable") to promise

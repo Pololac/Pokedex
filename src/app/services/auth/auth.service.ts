@@ -8,10 +8,14 @@ import { lastValueFrom } from 'rxjs';
 })
 export class AuthService {
   private readonly http = inject(HttpClient)
-  private token: string | undefined   // sécurité
+  private _token: string | undefined   // sécurité
+
+  get token(): string | undefined {
+    return this._token
+  }
 
   get isAuthenticated (): boolean {
-    return !!this.token   // Transforme en boolean le contenu de la valeur (si undefined -> false)
+    return !!this._token   // Transforme en boolean le contenu de la valeur (si undefined -> false)
   }
 
   //URL d'un autre site car API Pokemon en accès libre
@@ -23,10 +27,10 @@ export class AuthService {
       }
     )
     const res = await lastValueFrom(req)
-    this.token = res.access_token
+    this._token = res.access_token
   }
 
   logout (): void {
-    this.token = undefined
+    this._token = undefined
   }
 }
