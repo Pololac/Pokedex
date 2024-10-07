@@ -15,7 +15,7 @@ export interface LoginFormContent {
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent implements OnInit {
-    @Input({required: false})  errMsg?: string    
+  @Input({required: false})  errMsg?: string    
   // @Input({required: false}) errMsg: string | undefined
   
   @Output() formSubmitted: EventEmitter<LoginFormContent> = new EventEmitter<LoginFormContent>()

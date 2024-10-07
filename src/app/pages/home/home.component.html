@@ -1,29 +1,32 @@
-<div>
-    <h1 class="text-3xl font-bold text-center my-5 text-emerald-700 uppercase">Pokedex</h1>
-</div>
+
+<h1 class="text-3xl font-bold text-center my-5 text-emerald-700 uppercase">Pokedex</h1>
 
 <!-- Barre de recherche -->
-<div>
-    <div class="flex justify-center gap-2">
-        <form
-            [formGroup]="searchForm"
-            (ngSubmit)="onSubmitSearch()">
-            <input
-            type="text"
-            class="w-1/2 p-2 border border-gray-300 rounded-md backdrop:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            placeholder="Search for a Pokémon...">
-            <button 
-                type="submit"
-                class="bg-emerald-500 hover:enabled:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Search
-            </button>
+<form
+    *ngIf="searchForm"
+    class="flex justify-center gap-2"
+    [formGroup]="searchForm"
+    (ngSubmit)="onSubmitSearch()">
+    <input
+    type="text"
+    class="w-1/2 p-2 border border-gray-300 rounded-md backdrop:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+    placeholder="Search for a Pokémon..."
+    formControlName="search">
+    <button 
+        type="submit"
+        class="bg-emerald-500 hover:enabled:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Search
+    </button>
+</form>
 
-        </form>
-    </div>
-  </div>
-
-<div class="grid grid-cols-4 gap-x-2 gap-y-3 mt-10">
-    <app-pokemon-card
+<h3 class="text-xl font-bold text-center my-5 text-emerald-700uppercase">
+    Pokémon à la une
+</h3>
+<div class="flex justify-center gap-4">
+    <app-pokemon-card 
         *ngFor="let p of pokemon"
         [pokemon]="p">
     </app-pokemon-card>
 </div>
+
+
+
