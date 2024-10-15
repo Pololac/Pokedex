@@ -29,7 +29,7 @@ export class SearchResultsComponent implements OnInit{
       return
     }
 
-    // OPTI : faire la recherche directement en BDD et non pas côté Angular
+    // OPTIMISATION : faire la recherche directement en BDD et non pas côté Angular comme ici
     const pokemon = await this.pokemonService.list()
     this.pokemon = pokemon.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
   }

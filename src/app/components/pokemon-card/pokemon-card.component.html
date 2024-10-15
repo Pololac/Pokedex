@@ -1,4 +1,10 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg border border-emerald-500 my-2">
+<div 
+  (click)="clickable && navigateToPokemonDetails(pokemon.pokedexId)"
+  class="max-w-sm rounded overflow-hidden shadow-lg border border-emerald-500 my-2 "
+  [class.hover:border-emerald-700]="clickable"
+  [class.hover:shadow-2xl]="clickable"
+  [class.hover:cursor-pointer]="clickable"
+  >
     <div class="flex justify-between m-2">
       <div class="font-semibold">{{ pokemon.name }}</div>
       <div class="flex gap-2 justify-center items-center">

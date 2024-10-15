@@ -1,5 +1,5 @@
 
-<h1 class="text-3xl font-bold text-center my-5 text-emerald-700 uppercase">Pokedex</h1>
+<h1 class="container text-3xl font-bold text-center my-5 text-emerald-700 uppercase">Pokedex</h1>
 
 <!-- Barre de recherche -->
 <form
@@ -19,9 +19,19 @@
 </form>
 
 <h3 class="text-xl font-bold text-center my-5 text-emerald-700uppercase">
-    Pokémon à la une
+    Pokémons à la une
 </h3>
 <div class="flex justify-center gap-4">
+    <app-pokemon-card 
+        *ngFor="let p of selectedPokemon"
+        [pokemon]="p">
+    </app-pokemon-card>
+</div>
+
+<h3 class="text-xl font-bold text-center my-5 text-emerald-700uppercase">
+    Collection de Pokémons
+</h3>
+<div class="flex flex-wrap gap-4 justify-center">
     <app-pokemon-card 
         *ngFor="let p of pokemon"
         [pokemon]="p">

@@ -17,4 +17,10 @@ export class PokemonService {
     // Transforme données brutes reçues en données filtrées via fonction fromHttp() définie dans Pokemon.entity
     return pokemonHttp.map(pHttp => Pokemon.fromHttp(pHttp))
   }
+
+  async getByPokedexId(pokedexId: number): Promise<Pokemon>{
+    const req = this.http.get<PokemonHttp>(`https://tyradex.vercel.app/api/v1/pokemon/${pokedexId}`)
+    const pokemonHttp = await lastValueFrom(req)
+    return Pokemon.fromHttp(pokemonHttp)
+  }
 }

@@ -18,7 +18,7 @@ export class AuthService {
     return !!this._token   // Transforme en boolean le contenu de la valeur (si undefined -> false)
   }
 
-  //URL d'un autre site car API Pokemon en accès libre
+  //URL d'un autre site car API Pokemon en accès libre (Cf FakeAPI)
   async login (username: string, password: string): Promise<void> {
     const req = this.http.post<{ access_token: string, refresh_token: string }>('https://api.escuelajs.co/api/v1/auth/login',
       {
